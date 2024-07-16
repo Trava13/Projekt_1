@@ -1,0 +1,126 @@
+!!!!!Všechny příkazy naleznete v souboru commands.txt!!!!!
+
+1.Příprava
+---------
+-vytvoření složky Projekt_1 "mkdir"
+-otevření složky Projekt_1 "cd"
+-stažení pwlist.csv (uloží se do složky ve které se nacházím Projekt_1 - pro jednoduší zadáváni commandu, budu v této složce pracovat po celou dobu) "wget"
+
+2.Postup
+---------
+
+A - zjištěni počtu vzorku 
+
+-vytvořím soubor report.json s nadpisem "total_count and name" ( do toho souboru budu zapisovat veškeré data z příkazů, jednotlivé kroky oddělím nadpisem pro lepší orientaci v souboru) "echo"
+-s pwlist.csv extrahuji pouze názvy jednotlivých generátoru a zjistím počet vzorku jednotlivých generátoru vystup přesměruji do souboru "cut, sort, uniq" 
+
+
+B - Minimální délka vzorku
+
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-pomoci grep vyhledám dany generátor následně pomoci cut oddělím název generátoru, pote opět pomoci cut vyfiltruji vzorky obsahující 8 a více znaků, následně využiji grep pro odstranění prázdných řádku ("\S"), wc -l spočítá počet řádku = počet vzorku "grep, cut, wc"
+
+
+C - Počet vzorku s malým písmenem 
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-postup obdobný jako u B po získaní vzorku daného generátoru pomoci grep vyfiltruju vzorky obsahující jen mala písmena a-z a wc -l spočítám jejich počet přesměruji do souboru report.json "grep, cut, wc"
+
+D - Počet vzorku s velkými písmeny
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-stejný postup jako u C pouze u druhé použití grepu nahradím velkým písmeny A-Z "grep, cut, wc"
+
+E -Počet vzorku s číslicemi
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-stejný postup jako u C pouze u druhé použití grepu nahradím čislicemi 0-9 "grep, cut, wc"
+
+F - Počet vzorku se speciálními znaky
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-stejný postup jako u C pouze u druhé použití grepu nahradím '[[:punct:]]' vyhleda specilaní znaky "grep, cut, wc"
+
+G - Počet vzorku se shodujícími se první třemi znaky 
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-pomoci grep vyfiltruji název generátoru následně použiji cut k filtrovaní pouze vzorku daného generátoru, opět pomoci cut vyříznu ze vzorku pouze první tři znaky seřadím pomoci sort  následně pomoci uniq nechám vypsat pouze unikátní řádky a wc je spočítá = počet unikátních vzorku (odfiltruje shodujicice vzorky) "grep, cut, sort, uniq,wc"
+
+H- Počet vzorku se shodujícími se posledními třemi znaky
+-vytvořím nadpis a přesměruji do souboru report.json "echo"
+-opět pomoci grep vyfiltruji název generátoru následně oddělím název od vzorku pomoci cut, pomoci rev přehodím jako kdybych četl po zpátky následně vyhodnotím první 3 znaky(cut vyhodnotím 1-4 kvůli mezerníku na konci, tedy 4 znaky) opět použiji rev pro vraceni do původního řazení sort seřadím a jako u předěšleho případu G vypíšu pouze unikátní řádky a wc je spočítá vyfiltrujeme vzorky se shodujícími se posledními 3 znaky 
+
+3.Vyhodnoceni a úprava
+--------------------------
+report.json upraven do přepsaného formátu .json ve visual studiu a vytvoření tabulky v excelu pro vyhodnoceni v textu zasílám obsah report.json před úpravou a tabulku s vyhodnocením.
+
+obsah report.json:
+
+total_count and name
+     42 Andoes
+     99 Cairo
+     91 HernsPW
+     85 Orion1.15
+     74 PWmk
+min_length
+42
+73
+91
+85
+53
+min_lower
+42
+97
+91
+85
+74
+min_upper
+42
+97
+91
+84
+74
+min_digit
+0
+73
+85
+73
+0
+min_special
+27
+62
+71
+0
+55
+valid_prefix
+42
+99
+91
+83
+74
+valid_suffix
+42
+99
+91
+85
+74
+
+
+Tabulka:
+
+name    	total_count	min_length	min_lower	min_upper	min_digit	min_special	valid_prefix	valid_suffix	pionts 	Status
+Andoes		42		42		42		42		0		27		42		42		5	DQ
+Cairo		99		73		97		97		73		62		99		99		2	
+HernsPW		91		91		91		91		85		71		91		91		5	
+Orion1.15	85		85		85		84		73		0		83		85		3	DQ
+PWmk		74		53		74		74		0		55		74		74		4	DQ
+
+
+Na základě nedostatku vzorku byl diskvalifikován generator Andeos. Orion1.15 byl diskvalifikován jelikož negeneroval žádné speciální znaky. PWmk byl diskvalifikován na základě negenerovaní číslic. Pro vyhodnocení zbyli pouze Cairo a HernsPW. Posledně jmenovaný se stal vítězem s 5 body. Všechny jeho vzorky byli dostatečně(8 a vice znaku) dlouhé, obsahovali mala i velká písmena a neshodovali se začáteční 3 znaky ani poslední 3 znaky.
+
+
+
+
+
+
+
+ 
+
+
+
+

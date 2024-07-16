@@ -1,0 +1,119 @@
+1.Příprava
+-----------
+
+mkdir Projekt_1 # Vytvoření složky s projektem
+
+cd Projekt_1 # Otevření složky Projekt_1
+
+wget https://raw.githubusercontent.com/ENGETO-Academy/Linux-public/main/files/pwlist.csv  # Staženi pwlist.csv
+
+2.Postup
+---------
+
+A - Počet vzorku
+-----------------
+
+echo "total_count and name" > report.json # Vytvořeni souboru report.json + nadpisu 
+
+cut -d "," -f 1 pwlist.csv | sort | uniq -c >> report.json # Název a počet vzorku
+
+B - Minimální délka vzorku
+---------------------------
+
+echo "min_length" >> report.json # Nadpis pro minimální délku
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | cut -c 8-100 | grep "\S" | wc -l >> report.json # Vyfiltruje vzorky delší než 8 znaku, počet pošle do souboru
+
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | cut -c 8-100 | grep "\S" | wc -l >> report.json # opkavani pro generator Cairo
+  
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | cut -c 8-100 | grep "\S" | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | cut -c 8-100 | grep "\S" | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | cut -c 8-100 | grep "\S" | wc -l >> report.json # opkavani pro generator PWmk
+
+
+C - Počet vzorku s malým písmenem 
+--------------------------------------------------------
+echo "min_lower" >> report.json # Nadpis mala pismena
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | grep [a-z] | wc -l >> report.json # Filtruje vzorky, obsahující malé písmena, počet odešle do souboru
+		
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | grep [a-z] | wc -l >> report.json # opkavani pro generator Cairo
+
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | grep [a-z] | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | grep [a-z] | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | grep [a-z] | wc -l >> report.json # opkavani pro generator PWmk
+
+
+D - Počet vzorku s velkými písmeny
+---------------------------------------
+echo "min_upper" >> report.json # Nadpis velka pismena
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | grep [A-Z] | wc -l >> report.json # Filtruje vzorky, obsahující velká písmena, počet odešle do souboru
+
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | grep [A-Z] | wc -l >> report.json # opkavani pro generator Cairo
+
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | grep [A-Z] | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | grep [A-Z] | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | grep [A-Z] | wc -l >> report.json # opkavani pro generator PWmk
+
+E -Počet vzorku s číslicemi
+-----------------------------
+echo "min_digit" >> report.json # Nadpis čísla
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | grep [0-9] | wc -l >> report.json # Filtruje vzorky, obsahující číslice, počet odešle do souboru 
+
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | grep [0-9] | wc -l >> report.json # opkavani pro generator Cairo
+
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | grep [0-9] | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | grep [0-9] | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | grep [0-9] | wc -l >> report.json # opkavani pro generator PWmk
+
+E -Počet vzorku s číslicemi
+------------------------------
+echo "min_special" >> report.json # Nadpis speciální znaky
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | grep '[[:punct:]]' | wc -l >> report.json # Filtruje speciální znaky, počet odešle do souboru 
+
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | grep '[[:punct:]]' | wc -l >> report.json # opkavani pro generator Cairo
+
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | grep '[[:punct:]]' | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | grep '[[:punct:]]' | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | grep '[[:punct:]]' | wc -l >> report.json # opkavani pro generator PWmk
+
+G - Počet vzorku se shodujícími se první třemi znaky 
+-------------------------------------------------------
+echo "valid_prefix" >> report.json # Nadpis prefix
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | cut -c 1-3 | sort | uniq -u | wc -l >> report.json # Filtruje stejné první 3 znaky, počet odešle do souboru
+
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | cut -c 1-3 | sort | uniq -u | wc -l >> report.json # opkavani pro generator Cairo
+
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | cut -c 1-3 | sort | uniq -u | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | cut -c 1-3 | sort | uniq -u | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | cut -c 1-3 | sort | uniq -u | wc -l >> report.json # opkavani pro generator PWmk
+
+H- Počet vzorku se shodujícími se posledními třemi znaky
+---------------------------------------------------------
+echo "valid_suffix" >> report.json # Nadpis suffix
+
+grep "Andoes" pwlist.csv | cut -d "," -f 2-100 | rev | cut -c 1-4 | rev| sort | uniq -u | wc -l >> report.json # Filtruje stejné posledni 3 znaky, počet odešle do souboru
+
+grep "Cairo" pwlist.csv | cut -d "," -f 2-100 | rev | cut -c 1-4 | rev| sort | uniq -u | wc -l >> report.json # opkavani pro generator Cairo
+
+grep "HernsPW" pwlist.csv | cut -d "," -f 2-100 | rev | cut -c 1-4 | rev| sort | uniq -u | wc -l >> report.json # opkavani pro generator HernsPW
+
+grep "Orion1.15" pwlist.csv | cut -d "," -f 2-100 | rev | cut -c 1-4 | rev| sort | uniq -u | wc -l >> report.json # opkavani pro generator Orion1.15
+
+grep "PWmk" pwlist.csv | cut -d "," -f 2-100 | rev | cut -c 1-4 | rev| sort | uniq -u | wc -l >> report.json # opkavani pro generator PWmk
