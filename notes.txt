@@ -103,17 +103,15 @@ valid_suffix
 
 Tabulka:
 
-name    	total_count	min_length	min_lower	min_upper	min_digit	min_special	valid_prefix	valid_suffix	pionts 	Status
-Andoes		42		42		42		42		0		27		42		42		5	DQ
-Cairo		99		73		97		97		73		62		99		99		2	
-HernsPW		91		91		91		91		85		71		91		91		5	
-Orion1.15	85		85		85		84		73		0		83		85		3	DQ
-PWmk		74		53		74		74		0		55		74		74		4	DQ
+name    	total_count	min_length	min_lower	min_upper	min_digit	min_special	valid_prefix	valid_suffix	pionts 
+Andoes		42		     42		  42		  42		  0		  27		          42		  42		         -1
+Cairo		99		     73		  97		  97		  73		  62		          99		  99		          2	
+HernsPW		91		     91		  91		  91		  85		  71		          91		  91		          5	
+Orion1.15	     85		     85		  85		  84		  73		  0		          83		  85		          3	
+PWmk		     74		     53		  74		  74		  0		  55		          74		  74		          4	
 
 
-Na základě nedostatku vzorku byl diskvalifikován generator Andeos. Orion1.15 byl diskvalifikován jelikož negeneroval žádné speciální znaky. PWmk byl diskvalifikován na základě negenerovaní číslic. Pro vyhodnocení zbyli pouze Cairo a HernsPW. Posledně jmenovaný se stal vítězem s 5 body. Všechny jeho vzorky byli dostatečně(8 a vice znaku) dlouhé, obsahovali mala i velká písmena a neshodovali se začáteční 3 znaky ani poslední 3 znaky.
-
-
+Na základě nedostatku vzorku byl diskvalifikován generator Andeos. Najvice bodu získla HernsPW a to 5
 
 
 
