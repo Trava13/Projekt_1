@@ -5,15 +5,15 @@
     "data": [
         {
             "type": "Andoes",
-            "total_count": 42,
-            "min_length": 42,
-            "min_lower": 42,
-            "min_upper": 42,
+            "total_count": 0,
+            "min_length": 0,
+            "min_lower": 0,
+            "min_upper": 0,
             "min_digit": 0,
-            "min_special": 27,
-            "valid_prefix": 42,
-            "valid_suffix": 42,
-            "score": DQ
+            "min_special": 0,
+            "valid_prefix": 0,
+            "valid_suffix": 0,
+            "score": -1
         },
         {
             "type": "Cairo",
@@ -49,7 +49,7 @@
             "min_special": 0,
             "valid_prefix": 83,
             "valid_suffix": 85,
-	    "score": DQ
+	    "score": 3
 	},
  	{
             "type": "PWmk",
@@ -61,7 +61,7 @@
             "min_special": 55,
             "valid_prefix": 74,
             "valid_suffix": 74,
-	    "score": DQ
+	    "score": 4
 	}
     ]
 }
